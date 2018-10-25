@@ -17,7 +17,6 @@ public class CodeGenerationExample {
 		try {
 			personObj = new JSONObject("{ \"name\":\"Bill\",\"occupation\":\"doctor\", \"country\":\"Canada\"}");
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	
@@ -27,13 +26,13 @@ public class CodeGenerationExample {
 		compilationUnit.setPackageDeclaration("com.github.javaparser.GeneratedCode");
 	
 		ClassOrInterfaceDeclaration myClass = compilationUnit
-		        .addClass("MyClass")
+		        .addClass("Person")
 		        .setPublic(true);
 		
 		generateAllFields(personObj.keys(), myClass);
 		generateAllMethods(personObj.keys(), myClass);
 		
-		System.out.println(myClass.toString());
+		System.out.println(compilationUnit.toString());
 	}
 	
 	public static void generateAllFields(Iterator<String> parameters, ClassOrInterfaceDeclaration myClass) {
